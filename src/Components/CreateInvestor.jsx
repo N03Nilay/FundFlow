@@ -71,6 +71,7 @@ else{
       axios.post("https://fundflow.onrender.com/user/register", signup)
       .then((res) => {
         console.log(res.signup);
+        alert("user Created")
       })
     
 

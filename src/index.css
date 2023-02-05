@@ -20,12 +20,12 @@ code {
 }
 .left,.right{
   width: 50rem;
-  height: 35.55rem;
+  height: 37.55rem;
   text-align: center;
   padding-top: 1.5rem;
 }
 .left{
-  background: #c2f3a6; 
+  background: #ddf3d0; 
 }
 .btn-ingetstarted{
   width: 7rem;
