@@ -70,8 +70,12 @@ else{
       }
       axios.post("https://fundflow.onrender.com/user/register", signup)
       .then((res) => {
-        console.log(res.signup);
+        if(res.status === 200)
         alert("user Created")
+        else
+        console.log("error")
+      }).catch((err) => {
+        alert("already exist")
       })
     
 
@@ -85,10 +89,10 @@ else{
         <div className="createDoctor">
             <p style={{fontSize:"250%",letterSpacing:"0.5px",fontWeight:"bold",marginTop:"-0.01rem",paddingTop:"0.5rem"}}>FundFlow : For Start Up's</p>
             <p style={{fontSize:"130%",marginTop:"-1.5rem",fontWeight:"bold"}}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, sunt? </p>
-            <div className="allp" style={{display:"flex"}}>
+            <div className="allp" style={{display:"flex",marginLeft:"12rem"}}>
 
             <div className="p1">
-            <img src="heartbeat-line-icon-illustration-set-of-heartbeat-icon-on-symbol-cardiogram-heart-logo-vector-removebg-preview.png" style={{marginTop:"4.4rem"}} alt="" height="200rem" width="402rem" />
+            <img src="2654608-removebg-preview.png" alt="" height="300rem" width="350rem" />
             </div>
             <div>
         <form className='form-create' onSubmit={handleSubmit}>
@@ -130,8 +134,9 @@ else{
         <button type='submit'  className="create-btn">Create</button>
         </div>
         </div>
+        <p style={{fontSize:"120%",marginLeft:"-15rem",marginTop:"1.5rem"}}>Already have an account , <Link to="/LoginStartUp">LogIn</Link> </p>
       </form>
-      <p style={{fontSize:"120%",marginLeft:"-15rem",marginTop:"1.5rem"}}>Already have an account , <Link to="/LoginStartUp">LogIn</Link> </p>
+      
       </div>
       
       </div>

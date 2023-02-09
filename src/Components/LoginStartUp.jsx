@@ -53,9 +53,14 @@ const LoginStartUp = () => {
       axios.post("https://fundflow.onrender.com/user/login", login)
       .then((res) => {
         if(res.status === 200)
-        alert("loggedin successfully")
+        {
+            alert("loggedin successfully")
+            navigate("/DashboardStartUp")
+        }
         else
-        alert("create it")
+        console.log("check");
+      }).catch((err) => {
+          alert(err.response.data.message)
       })
       action.resetForm();
     }
@@ -68,9 +73,9 @@ const LoginStartUp = () => {
             <p style={{fontSize:"250%",letterSpacing:"0.5px",fontWeight:"bold",marginTop:"-0.01rem",paddingTop:"0.5rem"}}>FundFlow : For Start Up's</p>
             
             <p style={{fontSize:"130%",marginTop:"-1.5rem",fontWeight:"bold"}}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, provident.</p>
-            <div className="allp" style={{display:"flex"}}>
+            <div className="allp" style={{display:"flex",marginLeft:"12rem"}}>
             <div className="p1">
-            <img src="heartbeat-line-icon-illustration-set-of-heartbeat-icon-on-symbol-cardiogram-heart-logo-vector-removebg-preview.png" style={{marginTop:"-1.5rem"}} alt="" height="200rem" width="402rem" />
+            <img src="2654608-removebg-preview.png" style={{marginTop:"1.4rem"}} alt="" height="300rem" width="350rem" />
             </div>
             <div>
         <form className='form-create' onSubmit={handleSubmit}>
@@ -94,12 +99,13 @@ const LoginStartUp = () => {
         <button type='submit' className="create-btn">LogIn</button>
         </div>
         </div>
+        <p style={{fontSize:"120%",marginLeft:"-13rem",marginTop:"1.5rem"}}>Don't have an account , <Link to="/CreateStartUp" style={{color:"black"}}> Create it </Link></p>
         
       </form>
       
       </div>
       </div>
-      <p style={{fontSize:"120%",marginLeft:"-9rem",marginTop:"2rem"}}>Don't have an account , <Link to="/CreateStartUp" style={{color:"black"}}> Create it </Link></p>
+      
         </div>
 
     </div>

@@ -8,6 +8,10 @@ import CreateInvestor from './Components/CreateInvestor';
 import CreateStartUp from './Components/CreateStartUp';
 import LoginStartUp from './Components/LoginStartUp';
 import LoginInvestor from './Components/LoginInvestor';
+import DashboardStartUp from './Components/DashboardStartUp';
+import ListOfStartups from './Components/ListOfStartups';
+import DashboardInvestor from './Components/DashboardInvestor';
+import Biddingpage from './Components/Biddingpage';
 
 function App() {
   return (
@@ -20,6 +24,12 @@ function App() {
       <Route path='/CreateStartUp' element={<CreateStartUp/>} />
       <Route path='/LoginStartUp' element={<LoginStartUp/>} />
       <Route path='/LoginInvestor' element={<LoginInvestor/>} />
+      <Route path='/DashboardStartUp' element={<DashboardStartUp/>} />
+      <Route path='/ListOfStartups' element={<ListOfStartups/>} />
+      <Route path='/DashboardInvestor' element={<DashboardInvestor/>} />
+      <Route path='/Biddingpage' element={<Biddingpage/>} />
+    
+
       
       </Routes>
     </Router></>

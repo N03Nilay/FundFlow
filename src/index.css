@@ -82,5 +82,137 @@ code {
   margin:auto;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  margin-left: 8rem;
+  margin-top: 2rem;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
+
+/* dashboard */
+
+.sidebar-dashboard{
+  background-color: #0081C9;
+  width: 20rem;
+  height: 39.05rem;
+}
+.main-dashboard{
+  background-color: #86E5FF;
+  width: 65.5rem;
+  height: 39.05rem;
+}
+.upper-dashboard{
+  height: 8rem;
+  width: 63rem;
+  border-radius: 20px;
+  background: white;
+  margin-left: 1rem;
+  margin-top: 2rem;
+}
+.lower-dashboard{
+  margin-left: 1rem;
+}
+.lower-dashboard-down{
+  height: 25rem;
+  width: 30rem;
+  background: white;
+  border-radius: 20px;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+.each-investor{
+  margin-left: 5rem;
+  margin-top: -2.2rem;
+  font-size: 1.5rem;
+}
+.investors-list{
+  margin-top: -1rem;
+  height: 19rem;
+}
+.check{
+  margin-top: -1rem;
+  margin-left: 1rem;
+}
+.view-more{
+  font-size: 1.2rem;
+  margin-left: 11rem;
+  background: #B5F1CC;
+  border: none;
+  border-radius: 5px;
+  height: 2.5rem;
+  width: 8rem;
+}
+.view-more:hover{
+  cursor: pointer;
+  background: #75c995;
+  color: white;
+}
+.sidebar-dashboard-option{
+  /* margin-top: -1rem; */
+  margin-left: 1rem;
+}
+.sidebar-dashboard-list{
+  margin-top: 4rem;
+  margin-left: 2rem;
+}
+.each-sidebar-list{
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 3rem;
+}
+.each-sidebar-list:hover{
+  cursor: pointer;
+  color: rgb(161, 167, 182);
+}
+.list-of-startup{
+  display: flex;
+}
+.each-startup{
+  height: 13rem;
+  width: 15rem;
+  border-radius: 20px;
+  background: #0081B4;
+  color: white;
+  margin-left: 5rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.view-more-each-startup{
+  font-size: 1.2rem;
+  margin-left: 3rem;
+  background: white;
+  border: none;
+  border-radius: 5px;
+  height: 1.9rem;
+  width: 8rem;
+}
+.view-more-each-startup:hover{
+  cursor: pointer;
+  background: #39B5E0;
+  color: white;
+}
+.check3{
+  position: absolute;
+  top: 5rem;
+  left: 8rem;
+  border: 2px solid black;
+  height: 30rem;
+  width: 70rem;
+  background: #3c7af5f5;
+  border: none;
+  border-radius: 20px;
+}
+
+.bid-btn{
+  font-size: 1.2rem;
+  margin-right: 5rem;
+  background: rgb(212, 112, 112);
+  border: none;
+  border-radius: 5px;
+  height: 2.3rem;
+  width: 6rem;
+}
+
+.bid-btn:hover{
+  cursor:pointer;
+  color: white;
+  background: rgb(241, 81, 81);
+}
+
