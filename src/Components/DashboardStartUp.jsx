@@ -46,7 +46,7 @@ const DashboardStartUp = () => {
             <div className="lower-dashboard" style={{display:"flex"}}>
                 <div className="lower-dashboard-down">
                     <p style={{fontSize:"1.4rem",textAlign:"center",marginTop:"-0.01rem",paddingTop:"0.5rem"}}>Current Investors</p>
-                    <hr style={{marginTop:"-1rem"}} />
+                    <hr style={{marginTop:"-1rem" }} />
                     <div className="investors-list">
                         <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
                         <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
