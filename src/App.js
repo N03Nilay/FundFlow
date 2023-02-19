@@ -12,6 +12,7 @@ import DashboardStartUp from './Components/DashboardStartUp';
 import ListOfStartups from './Components/ListOfStartups';
 import DashboardInvestor from './Components/DashboardInvestor';
 import Biddingpage from './Components/Biddingpage';
+import Startupend from './Components/Startupend';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
     <Router>
       
       <Routes>
-      <Route path='/' element={<SignupAndLogIn/>} />
+      <Route path='/' element={<Startupend/>} />
+      <Route path='/SignupAndLogin' element={<SignupAndLogIn/>} />
       <Route path='/CreateInvestor' element={<CreateInvestor/>} />
       <Route path='/CreateStartUp' element={<CreateStartUp/>} />
       <Route path='/LoginStartUp' element={<LoginStartUp/>} />

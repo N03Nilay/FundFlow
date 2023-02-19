@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+const accessToken = localStorage.getItem("access token");
+console.log(accessToken)
+const config = {
+    header:{
+        Authorization: `Bearer ${accessToken}`
+    }
+}
 
 const DashboardInvestor = () => {
     const [dataOfEachStartUp,setdataOfEachStartUp] = useState([])
@@ -68,8 +75,12 @@ const DashboardInvestor = () => {
                         <div style={{display:"flex",justifyContent:"space-between"}}>
                 <div key={item._id} className="check"><span className='bullet' style={{color:"green",fontSize:"3rem",paddingTop:"5rem"}}>&#x2022;</span><p className='each-investor'>{item.name}</p></div> 
                 <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}><button className='bid-btn' onClick={() => {
-                   const comp_name = item.name
-                    navigate("/Biddingpage",{state:{name:comp_name}})
+                   const comp_name = item.name;
+                   const comp_sector = item.type_of_company
+                   const comp_established = item.est_year
+                   const comp_revenue = item.revenue_of_last_year
+                   const comp_pitch = item.video_link
+                    navigate("/Biddingpage",{state:{name:comp_name,sector:comp_sector,established:comp_established,revenue:comp_revenue,pitch:comp_pitch}})
                 }}>BID</button></span></div> 
                 </div>
                 <hr style={{marginTop:"-0.8rem"}} />

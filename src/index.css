@@ -195,7 +195,7 @@ code {
   border: 2px solid black;
   height: 30rem;
   width: 70rem;
-  background: #3c7af5f5;
+  background: #94b5f7fd;
   border: none;
   border-radius: 20px;
 }
@@ -216,3 +216,154 @@ code {
   background: rgb(241, 81, 81);
 }
 
+.bid-left{
+  background-color: #3C84AB;
+  height:34.55rem;
+  width: 56rem;
+}
+.bid-right{
+  background-color: #bae0fa;
+  height:34.55rem;
+  width: 29.5rem;
+}
+.evaluation-box{
+  border: 2px solid black;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  width: 26.5rem;
+  height: 7rem;
+  padding: 0.5rem;
+  margin-left: 1rem;
+}
+#price , #percent{
+  height: 2.1rem;
+  width: 15rem;
+
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 120%;
+  border: none;
+  background: #e7e5e5;
+  border-radius: 8px;
+}
+#price:focus,#percent:focus{
+  outline: none;
+  transition: 0.25s ease-in-out;
+  border-bottom: 2px solid black;
+  border-radius: 0px;
+}
+.bid-start-btn{
+  width: 16rem;
+  height: 4rem;
+  font-size: 140%;
+  margin-left:17.5rem;
+  margin-top: 3rem;
+  border: none;
+  border-radius: 10px;
+  background: rgb(130, 226, 130);
+  letter-spacing: 0.2rem;
+}
+.bid-start-btn:hover{
+  
+  cursor: pointer;
+  background: rgb(30, 209, 30);
+  color: white;
+} 
+
+
+
+.div_1{
+  display: flex; 
+   align-items: center;   
+   justify-content: center;
+}
+.lists{
+   display: flex;
+   width: 52vw;
+   justify-content: right;
+   text-decoration: none;
+   /* margin-left: 5vw; */
+}
+li{
+   margin-left: 4vw;
+   text-decoration: none;
+   list-style: none;
+   color: black;
+}
+li:hover{
+   text-decoration: none;
+   cursor: pointer;
+
+}
+li:focus{
+   text-decoration: none;
+}
+.signin{
+   height: 8vh !important;
+   width: 10vw !important;
+   color: black !important;
+   width: 8vw !important;
+   margin-left: 10vw !important;
+}
+.get_started{
+       background-color: rgb(79, 79, 228) !important;
+       color: white !important;
+       font-weight: bold !important;
+       height: 8vh !important;
+       width: 10vw !important;
+       border-radius: 1rem !important;
+       margin-left: .5vw !important;
+}
+.container{
+   border: 2px solid white;
+   width: 32vw;
+   margin-left: 10vw;
+   margin-top: 10vh;
+}
+.content{
+   border: 1px solid white;
+   width: 32vw;
+   font-size: xx-large;
+   font-weight: bold;
+}
+.content_2{
+   font-size: x-large;
+}
+.getstarted2{
+   background-color: rgb(79, 79, 228) !important;
+   color: white !important;
+   font-weight: bold !important;
+   height: 8vh !important;
+   width: 12vw !important;
+   border-radius: 1rem !important; 
+}
+img{
+   margin-top: 1vw;
+   width: 40vw;
+   height: 60vh;
+   margin-left: 8vw;
+   background-color: white;
+   animation-name: images;
+   animation-duration: 4s;
+   animation-iteration-count: infinite;
+   animation-timing-function: ease-in-out;
+   animation-direction: alternate-reverse ;
+}
+.div_2{
+   display: flex;
+}
+.pis{
+   margin-left: 18vw;
+}
+.div_3{
+   display: flex;
+   margin-top: 4vh;
+}
+h4{
+   margin-bottom: -10px;
+}
+
+a{
+   text-decoration: none;
+}
