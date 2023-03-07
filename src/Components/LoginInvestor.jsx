@@ -7,6 +7,7 @@ const initialValues = {
     email: "",
     password: "",
   };
+  var accessToken = "";
 
 const LoginInvestor = () => {
     const [captcha,setcaptcha] = useState(false);
@@ -49,12 +50,17 @@ const LoginInvestor = () => {
         const login = {
           email: email,
           password: password,
+          role: "investor",
 
         }
         axios.post("https://fundflow.onrender.com/user/login", login)
         .then((res) => {
           if(res.status === 200)
           {
+          
+          console.log(res)
+          accessToken = res.data.token;
+          localStorage.setItem("access token" , accessToken )
           alert("loggedin successfully");
           navigate("/DashboardInvestor")
           }

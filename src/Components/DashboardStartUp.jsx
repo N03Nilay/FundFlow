@@ -1,9 +1,54 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
+const accessToken = localStorage.getItem("access token");
+console.log(accessToken)
+var config = {
+    headers:{
+        Authorization: `Bearer ${accessToken}`
+    }
+}
 
 const DashboardStartUp = () => {
+    const [length,setlength] = useState(0);
+    var tname = "";
+
+    useEffect(() => {
+        axios.get("https://fundflow.onrender.com/startup/get_details" , config)
+        .then((res) => {
+            console.log(accessToken);
+            console.log(res)
+            setlength(res.data.length)
+            if(length === 1){
+            tname = res.data[0].name
+            console.log(tname)
+        }
+
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+    })
+    const [num,setnum] = useState(0);
+    
     const navigate = useNavigate();
+    const location = useLocation();
+    const StartAuction = () => {
+        if(num === 0){
+        setnum(num+1)
+        const check = {
+            name: tname,
+          }
+        axios.post("https://fundflow.onrender.com/startup/start_auction" , check, config)
+        .then((res) => {
+            alert("auction started")  
+        })}
+        else
+        alert("Alredy started")
+        
+    }
   return (
     <div style={{display:"flex"}}>
         <div className="sidebar-dashboard">
@@ -14,10 +59,17 @@ const DashboardStartUp = () => {
                             navigate("/DashboardStartUp")
                         }}>DASHBOARD</p></div>
                         <div className="each-sidebar-list"><p onClick={() => {
-                            alert("hello")
+                            (length === 1)? (navigate("/ProfileStartUpShow")) : (navigate("/ProfileStartUp"))
+                            
                         }}>PROFILE</p></div>
                         <div className="each-sidebar-list"><p>INVESTORS</p></div>
-                        <div className="each-sidebar-list"><p>NOTIFICATIONS</p></div>
+                        <div className="each-sidebar-list"><p onClick={(() => {
+                            navigate("/Auction")
+                        })}>AUCTION</p></div>
+                        <div className="each-sidebar-list"><p onClick={(() => {
+                           localStorage.clear()
+                           navigate("/LoginStartUp")
+                        })}>Log Out</p></div>
                           
                     </div>
         
@@ -52,11 +104,35 @@ const DashboardStartUp = () => {
                         <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
                         <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
                         <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
-                        <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
+                        
                         
                         
                     </div>
-                    <button className='view-more'>View more &#x290B;</button>
+                    <button className='view-more' onClick={StartAuction}>Start Auction</button>
+                    <button className='view-more' onClick={() => {
+                        
+                        const check2 = {
+                            name: tname,
+                          }
+                        axios.post("https://fundflow.onrender.com/startup/end_auction" , check2, config)
+                        .then((res) => {
+                            alert("auction Ended")
+                            console.log(res)
+                        })
+                    }}>End Auction</button>
+
+
+                    <button className='view-more' onClick={() => {
+                        
+                        const check2 = {
+                            name: tname,
+                          }
+                        axios.post("https://fundflow.onrender.com/bid/get_leaderboard" , check2, config)
+                        .then((res) => {
+                            
+                            console.log(res)
+                        })
+                    }}>Get Leaderboard</button>
 
                 </div>
                 <div className="lower-dashboard-down">

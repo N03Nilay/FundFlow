@@ -161,9 +161,14 @@ code {
 .each-sidebar-list:hover{
   cursor: pointer;
   color: rgb(161, 167, 182);
+  text-decoration: overline;
+}
+#bhakk:hover{
+  text-decoration: underline;
 }
 .list-of-startup{
   display: flex;
+  flex-wrap: wrap;
 }
 .each-startup{
   height: 13rem;
@@ -172,6 +177,7 @@ code {
   background: #0081B4;
   color: white;
   margin-left: 5rem;
+  margin-top: 1rem;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .view-more-each-startup{
@@ -272,98 +278,3 @@ code {
 } 
 
 
-
-.div_1{
-  display: flex; 
-   align-items: center;   
-   justify-content: center;
-}
-.lists{
-   display: flex;
-   width: 52vw;
-   justify-content: right;
-   text-decoration: none;
-   /* margin-left: 5vw; */
-}
-li{
-   margin-left: 4vw;
-   text-decoration: none;
-   list-style: none;
-   color: black;
-}
-li:hover{
-   text-decoration: none;
-   cursor: pointer;
-
-}
-li:focus{
-   text-decoration: none;
-}
-.signin{
-   height: 8vh !important;
-   width: 10vw !important;
-   color: black !important;
-   width: 8vw !important;
-   margin-left: 10vw !important;
-}
-.get_started{
-       background-color: rgb(79, 79, 228) !important;
-       color: white !important;
-       font-weight: bold !important;
-       height: 8vh !important;
-       width: 10vw !important;
-       border-radius: 1rem !important;
-       margin-left: .5vw !important;
-}
-.container{
-   border: 2px solid white;
-   width: 32vw;
-   margin-left: 10vw;
-   margin-top: 10vh;
-}
-.content{
-   border: 1px solid white;
-   width: 32vw;
-   font-size: xx-large;
-   font-weight: bold;
-}
-.content_2{
-   font-size: x-large;
-}
-.getstarted2{
-   background-color: rgb(79, 79, 228) !important;
-   color: white !important;
-   font-weight: bold !important;
-   height: 8vh !important;
-   width: 12vw !important;
-   border-radius: 1rem !important; 
-}
-img{
-   margin-top: 1vw;
-   width: 40vw;
-   height: 60vh;
-   margin-left: 8vw;
-   background-color: white;
-   animation-name: images;
-   animation-duration: 4s;
-   animation-iteration-count: infinite;
-   animation-timing-function: ease-in-out;
-   animation-direction: alternate-reverse ;
-}
-.div_2{
-   display: flex;
-}
-.pis{
-   margin-left: 18vw;
-}
-.div_3{
-   display: flex;
-   margin-top: 4vh;
-}
-h4{
-   margin-bottom: -10px;
-}
-
-a{
-   text-decoration: none;
-}

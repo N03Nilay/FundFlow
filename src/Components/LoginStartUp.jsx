@@ -7,6 +7,7 @@ const initialValues = {
     email: "",
     password: "",
   };
+  var accessToken = "";
 
 const LoginStartUp = () => {
     const [captcha,setcaptcha] = useState(false);
@@ -49,13 +50,22 @@ const LoginStartUp = () => {
       const login = {
         email: email,
         password: password,
+        role: "pitcher",
       }
       axios.post("https://fundflow.onrender.com/user/login", login)
       .then((res) => {
         if(res.status === 200)
         {
-            alert("loggedin successfully")
+            accessToken = res.data.token;
+            // localStorage.clear();
+          localStorage.setItem("access token" , accessToken )
+          alert("loggedin successfully")
+          // setInterval(() => {
+          //   console.log("")
+          // },5000)
             navigate("/DashboardStartUp")
+            // console.log(res)
+          
         }
         else
         console.log("check");

@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+const accessToken = localStorage.getItem("access token");
+console.log(accessToken)
+const config = {
+    headers:{
+        Authorization: `Bearer ${accessToken}`
+    }
+}
+
 
 const ListOfStartups = () => {
     const [dataOfEachStartUp,setdataOfEachStartUp] = useState([])
@@ -8,16 +16,21 @@ const ListOfStartups = () => {
     const [est_year,setest_year] = useState(0)
     const [eva_lastyear,seteva_last_year] = useState(0)
     const [name,setName] = useState("")
+    const [founder,setfounder] = useState("")
+    const [cofounder,setcofounder] = useState("")
     const [rev_year,setrev_year] = useState(0)
     const [type,settype] = useState("")
     const [pitch,setpitch] = useState("")
     
     useEffect(() => {
-    axios.get("https://fundflow.onrender.com/startup/get")
+    axios.get("https://fundflow.onrender.com/startup/get" , config)
     .then((res) => {
         // console.log(res.data)
-        
+        console.log("accessToken")
         setdataOfEachStartUp(res.data)
+        console.log(res.data)
+    }).catch((err) => {
+        console.log(accessToken)
     })
 })
 
@@ -44,6 +57,8 @@ const ListOfStartups = () => {
                     setrev_year(item.revenue_of_last_year)
                     settype(item.type_of_company)
                     setpitch(item.video_link)
+                    setfounder(item.founder)
+                    setcofounder(item.co_founder)
                 }}>View More</button>
             </div>
                 )
@@ -57,7 +72,7 @@ const ListOfStartups = () => {
             </div>
             <div className="check-up1" style={{display:"flex",justifyContent:"space-around"}}>
             <div className="check3-p1" style={{textAlign:"center"}}>
-                <h2>Nilay Rudra</h2>
+                <h2>{founder}</h2>
                 <p>Founder</p>
             </div>
             <div className="check3-p2" style={{textAlign:"center"}}>

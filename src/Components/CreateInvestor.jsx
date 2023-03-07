@@ -65,7 +65,6 @@ else{
         email: email,
         password: password,
         Role: "investor",
-        age: "19"
 
       }
       axios.post("https://fundflow.onrender.com/user/register", signup)

@@ -2,8 +2,15 @@ import React, { useState } from 'react'
 import {useFormik} from "formik";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
 import axios from 'axios';
+const accessToken = localStorage.getItem("access token");
+console.log(accessToken)
+const config = {
+    header:{
+        Authorization: `Bearer ${accessToken}`
+    }
+}
+
 
 const initialValues = {
     username: "",
@@ -65,10 +72,9 @@ else{
         email: email,
         password: password,
         Role: "pitcher",
-        age: "19"
 
       }
-      axios.post("https://fundflow.onrender.com/user/register", signup)
+      axios.post("https://fundflow.onrender.com/user/register", signup , config)
       .then((res) => {
         if(res.status === 200)
         alert("user Created")

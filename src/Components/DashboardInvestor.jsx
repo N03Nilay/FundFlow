@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const accessToken = localStorage.getItem("access token");
 console.log(accessToken)
 const config = {
-    header:{
+    headers:{
         Authorization: `Bearer ${accessToken}`
     }
 }
@@ -13,10 +13,9 @@ const DashboardInvestor = () => {
     const [dataOfEachStartUp,setdataOfEachStartUp] = useState([])
     const navigate = useNavigate();
     useEffect(() => {
-        axios.get("https://fundflow.onrender.com/startup/get")
+        axios.get("https://fundflow.onrender.com/startup/get" , config)
         .then((res) => {
             // console.log(res.data)
-            
             setdataOfEachStartUp(res.data)
         })
     })
@@ -80,7 +79,11 @@ const DashboardInvestor = () => {
                    const comp_established = item.est_year
                    const comp_revenue = item.revenue_of_last_year
                    const comp_pitch = item.video_link
-                    navigate("/Biddingpage",{state:{name:comp_name,sector:comp_sector,established:comp_established,revenue:comp_revenue,pitch:comp_pitch}})
+                   const comp_founder = item.founder
+                   const comp_cofounder = item.co_founder
+                   const comp_ask = item.ask_money
+                   const comp_equity = item.give_equity
+                    navigate("/Biddingpage",{state:{name:comp_name,sector:comp_sector,established:comp_established,revenue:comp_revenue,pitch:comp_pitch,founder:comp_founder,cofounder:comp_cofounder,ask:comp_ask,equity:comp_equity}})
                 }}>BID</button></span></div> 
                 </div>
                 <hr style={{marginTop:"-0.8rem"}} />
