@@ -18,6 +18,9 @@ import ProfileStartupShow from './Components/ProfileStartupShow';
 import Auction from './Components/Auction';
 import Leaderboard from './Components/Leaderboard';
 import ProfileMakeChange from './Components/ProfileMakeChange';
+import ProfileInvestor from './Components/ProfileInvestor';
+import MainPage from './Components/MainPage';
+import ProfileShowInvestor from './Components/ProfileShowInvestor';
 
 function App() {
   return (
@@ -26,7 +29,8 @@ function App() {
       
       <Routes>
       {/* <Route path='/' element={<Startupend/>} /> */}
-      <Route path='/' element={<SignupAndLogIn/>} />
+      <Route path='/' element={<MainPage/>} />
+      <Route path='/SignupAndLogIn' element={<SignupAndLogIn/>} />
       <Route path='/CreateInvestor' element={<CreateInvestor/>} />
       <Route path='/CreateStartUp' element={<CreateStartUp/>} />
       <Route path='/LoginStartUp' element={<LoginStartUp/>} />
@@ -40,7 +44,8 @@ function App() {
       <Route path='/Auction' element={<Auction/>} />
       <Route path='/Leaderboard' element={<Leaderboard/>} />
       <Route path='/ProfileMakeChange' element={<ProfileMakeChange/>} />
-    
+      <Route path='/ProfileInvestor' element={<ProfileInvestor/>} />
+      <Route path='/ProfileShowInvestor' element={<ProfileShowInvestor/>} />
 
       
       </Routes>

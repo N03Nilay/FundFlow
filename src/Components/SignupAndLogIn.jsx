@@ -16,7 +16,9 @@ const SignupAndLogIn = () => {
             <button className='btn-ingetstarted' onClick={() => {
                 navigate("/CreateStartUp")
             }}>Create</button>
-            <p style={{fontSize:"130%"}}>Already have an account , Log in </p>
+            <p style={{fontSize:"130%"}}>Already have an account , <a style={{textDecoration:"underline"}} onClick={() => {
+                navigate("/LoginStartUp")
+            }}> Log in </a></p>
 
             </div>
             <div className="right">
@@ -30,7 +32,9 @@ const SignupAndLogIn = () => {
             <button className='btn-ingetstarted' onClick={() => {
                 navigate("/CreateInvestor")
             }}>Create</button>
-            <p style={{fontSize:"130%"}}>Already have an account , Log in </p>
+            <p style={{fontSize:"130%"}}>Already have an account , <a style={{textDecoration:"underline"}} onClick={() => {
+                navigate("/LoginInvestor")
+            }}> Log in </a> </p>
 
             </div>
         </div>

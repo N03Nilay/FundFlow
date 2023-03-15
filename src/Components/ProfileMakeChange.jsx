@@ -23,6 +23,12 @@ const ProfileMakeChange = (e) => {
     const [pitch,setpitch] = useState("")
     const [ask_money,setask_money] = useState("")
     const [give_equity,setgive_equity] = useState("")
+
+    const [newprev_eval,setnewprev_eval] = useState("")
+    const [newrev_last_yr,setnewrev_last_yr] = useState("")
+    const [newpitch,setnewpitch] = useState("")
+    const [newask_money,setnewask_money] = useState("")
+    const [newgive_equity,setnewgive_equity] = useState("")
     useEffect(() => {
         axios.get("https://fundflow.onrender.com/startup/get_details" , config)
         .then((res) => {
@@ -78,17 +84,18 @@ const ProfileMakeChange = (e) => {
                 co_founder: cofounder,
                 type_of_company: type,
                 est_year: Number(est_year),
-                evaluation_of_last_year: Number(prev_eval),
-                revenue_of_last_year: Number(rev_last_yr),
-                video_link: pitch,
+                evaluation_of_last_year: Number(newprev_eval),
+                revenue_of_last_year: Number(newrev_last_yr),
+                video_link: newpitch,
                 name: name,
                 location: loc,
-                ask_money: Number(ask_money),
-                give_equity: Number(give_equity),
+                ask_money: Number(newask_money),
+                give_equity: Number(newgive_equity),
             }
             axios.patch("https://fundflow.onrender.com/startup/patch_startup" , passValues , config)
             .then((res) => {
                 alert("Changes saved")
+                navigate("/ProfileStartupShow")
             })
             .catch((err) => {
                 console.log(err)
@@ -103,67 +110,67 @@ const ProfileMakeChange = (e) => {
     <div className='name-heading'>
         <label htmlFor="name" style={{fontSize: "2rem"}}>Name : </label>
         <span name='name' id='show_name'style={{fontSize: "1.8rem",marginLeft: "16.3rem"}}
-        ><input type="text" className='make-change-input' value={name}/></span><br />
+        ><input type="text" className='make-change-input' style={{color:"grey"}} value={name}/></span><br />
         </div>
         <div className='founder-heading'>
         <label htmlFor="founder" style={{fontSize: "2rem"}}>Founder : </label>
         <span ame='founder' id='show_founder' style={{fontSize: "1.8rem",marginLeft: "14.3rem"}}
-        ><input type="text" className='make-change-input' value={founder}/></span><br />
+        ><input type="text" className='make-change-input' style={{color:"grey"}} value={founder}/></span><br />
         </div>
         
         <div className='cofounder-heading'>
             <label htmlFor="co_founder" style={{fontSize: "2rem"}}>Co-Founder : </label>
         <span name='co_founder' id='show_co_founder' style={{fontSize: "1.8rem",marginLeft: "11.2rem"}}
-        ><input type="text" className='make-change-input' value={cofounder}/></span><br />
+        ><input type="text" className='make-change-input' style={{color:"grey"}} value={cofounder}/></span><br />
         </div>
         <div className='type-heading'>
             <label htmlFor="type" style={{fontSize: "2rem"}}>Type of Business :  </label>
         <span name='type' id='show_type' style={{fontSize: "1.8rem",marginLeft: "7.3rem"}}
-        ><input type="text" className='make-change-input' value={type}/></span><br />
+        ><input type="text" className='make-change-input' style={{color:"grey"}} value={type}/></span><br />
         </div>
         <div className='est_year-heading'>
             <label htmlFor="est_year" style={{fontSize: "2rem"}}>Established Year : </label>
         <span name='est_year' id='show_est_year' style={{fontSize: "1.8rem",marginLeft: "7.8rem"}}
-        ><input type="text" className='make-change-input' value={est_year}/></span><br />
+        ><input type="text" className='make-change-input' style={{color:"grey"}} value={est_year}/></span><br />
         </div>
         <div className='location-heading'>
             <label htmlFor="location" style={{fontSize: "2rem"}}> Location : </label>
         <span name='location' id='show_location' style={{fontSize: "1.8rem",marginLeft: "14.5rem"}}
-        ><input type="text" className='make-change-input' value={loc}/></span><br />
+        ><input type="text" className='make-change-input' style={{color:"grey"}} value={loc}/></span><br />
         </div>
         <div className='prev_eval-heading'>
             <label htmlFor="prev_eval" style={{fontSize: "2rem"}}>Previous Evaluation : </label>
         <span name='prev_eval' id='show_prev_eval' style={{fontSize: "1.8rem",marginLeft: "5rem"}}
         ><input type="text" className='make-change-input' placeholder={'Rs '+prev_eval}  onChange={(e) => {
-            setprev_eval(e.target.value)
+            setnewprev_eval(e.target.value)
         }}/> </span><br />
         </div>
         <div className='rev_last_yr-heading'>
             <label htmlFor="rev_last_yr" style={{fontSize: "2rem"}}>Revenue Last Year : </label>
         <span name='rev_last_yr' id='show_rev_last_yr' style={{fontSize: "1.8rem",marginLeft: "6.3rem"}}
         ><input type="text" className='make-change-input' placeholder={'Rs '+rev_last_yr}  onChange={(e)=>{
-            setrev_last_yr(e.target.value)
+            setnewrev_last_yr(e.target.value)
         }}/></span><br />
         </div>
         <div className='pitch-heading'>
             <label htmlFor="pitch" style={{fontSize: "2rem"}}>Pitch Video link : </label>
         <span name='pitch' id='show_pitch' style={{fontSize: "1.8rem",marginLeft: "8.4rem"}}
         ><input type="text" className='make-change-input' placeholder={pitch}  onChange={(e) => {
-            setpitch(e.target.value)
+            setnewpitch(e.target.value)
         }}/></span><br />
         </div>
         <div className='ask_money-heading'>
             <label htmlFor="ask_money" style={{fontSize: "2rem"}}>Ask Money : </label>
         <span name='ask_money' id='show_ask_money' style={{fontSize: "1.8rem",marginLeft: "12.3rem"}}
         ><input type="text" className='make-change-input' placeholder={'Rs '+ask_money}  onChange={(e) => {
-            setask_money(e.target.value)
+            setnewask_money(e.target.value)
         }} /></span><br />
         </div>
         <div className='give_equity-heading'>
             <label htmlFor="give_equity" style={{fontSize: "2rem"}}>Give Equity : </label>
         <span name='give_equity' id='show_give_equity' style={{fontSize: "1.8rem",marginLeft: "12.3rem"}}
         ><input type="text" className='make-change-input' placeholder={give_equity +'%'} onChange={(e) => {
-            setgive_equity(e.target.value) 
+            setnewgive_equity(e.target.value) 
         }} /></span><br />
         </div>
       </form>

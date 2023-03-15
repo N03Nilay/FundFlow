@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-
+import { display } from '@mui/system';
+    
 const accessToken = localStorage.getItem("access token");
 console.log(accessToken)
 var config = {
@@ -10,10 +11,15 @@ var config = {
     }
 }
 
+
+
 const DashboardStartUp = () => {
+    const [dataOfEachInvestor,setdataOfEachInvestor] = useState([])
     const [length,setlength] = useState(0);
     var tname = "";
-
+    const [eachstartup , seteachstartup] = useState([])
+    const navigate = useNavigate();
+    
     useEffect(() => {
         axios.get("https://fundflow.onrender.com/startup/get_details" , config)
         .then((res) => {
@@ -29,12 +35,27 @@ const DashboardStartUp = () => {
         .catch((err) => {
             console.log(err)
         })
+        axios.get("https://fundflow.onrender.com/investor/get" , config)
+                            .then((res) => {
+                                setdataOfEachInvestor(res.data)
+                                
+                                // console.log(res)
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
 
-    })
+    },[])
+    console.log(dataOfEachInvestor)
+    const [load,setload] = useState(false)
     const [num,setnum] = useState(0);
+    const [name,setname] = useState("")
+    const [email,setemail] = useState("")
+    const [age,setage] = useState("")
+    const [exp,setexp] = useState("")
+    const [tot_comp,settot_comp] = useState("")
+    const [tot_money,settot_money] = useState("")
     
-    const navigate = useNavigate();
-    const location = useLocation();
     const StartAuction = () => {
         if(num === 0){
         setnum(num+1)
@@ -59,17 +80,20 @@ const DashboardStartUp = () => {
                             navigate("/DashboardStartUp")
                         }}>DASHBOARD</p></div>
                         <div className="each-sidebar-list"><p onClick={() => {
-                            (length === 1)? (navigate("/ProfileStartUpShow")) : (navigate("/ProfileStartUp"))
-                            
+                            (length === 1)? (navigate("/ProfileStartUpShow",{state:{passlength:length}})) : (navigate("/ProfileStartUp",{state:{passlength:length}}))                        
                         }}>PROFILE</p></div>
                         <div className="each-sidebar-list"><p>INVESTORS</p></div>
                         <div className="each-sidebar-list"><p onClick={(() => {
-                            navigate("/Auction")
+                            if(tname === "")
+                            alert("Fill the Profile first for Starting an AUCTION")
+                            else
+                            navigate("/Auction" , {state:{passlength:length}})
                         })}>AUCTION</p></div>
                         <div className="each-sidebar-list"><p onClick={(() => {
                            localStorage.clear()
                            navigate("/LoginStartUp")
                         })}>Log Out</p></div>
+                       
                           
                     </div>
         
@@ -95,49 +119,83 @@ const DashboardStartUp = () => {
                 <hr style={{marginTop:"-0.5rem"}}/>
             
             </div>
-            <div className="lower-dashboard" style={{display:"flex"}}>
-                <div className="lower-dashboard-down">
-                    <p style={{fontSize:"1.4rem",textAlign:"center",marginTop:"-0.01rem",paddingTop:"0.5rem"}}>Current Investors</p>
-                    <hr style={{marginTop:"-1rem" }} />
+            <div className="lower-dashboard" >
+            <h1 style={{textAlign:"center",fontSize:"3rem",width:"30rem",marginLeft:"15rem",padding:"0.2rem",textShadow: "2px 2px #0077b6"}}>Current Investors</h1>
+                <div className="lower-dashboard-down" style={{marginTop:"-1.8rem"}}>
+                    {/* <p style={{fontSize:"1.4rem",textAlign:"center",marginTop:"-0.01rem",paddingTop:"0.5rem"}}>Current Investors</p>
+                    <hr style={{marginTop:"-1rem" }} /> */}
                     <div className="investors-list">
-                        <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
-                        <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
-                        <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
-                        <div className="check"><span className='bullet' style={{color:"green",fontSize:"3rem"}}>&#x2022;</span><p className='each-investor'>Aman Gupta</p></div>
-                        
-                        
-                        
-                    </div>
-                    <button className='view-more' onClick={StartAuction}>Start Auction</button>
-                    <button className='view-more' onClick={() => {
-                        
-                        const check2 = {
-                            name: tname,
-                          }
-                        axios.post("https://fundflow.onrender.com/startup/end_auction" , check2, config)
-                        .then((res) => {
-                            alert("auction Ended")
-                            console.log(res)
-                        })
-                    }}>End Auction</button>
+                          {dataOfEachInvestor.map((item,index) => {
+                            if(index != 0)
+                    return(
+                        <div key={item._id}>
+                        <div style={{display:"flex",justifyContent:"space-between"}}>
+                            <div className='arrow-inv' >
+                            <p> &#9710;</p>
+                            </div>
+                <div key={item._id} className="check" ><p className='each-investor' style={{marginLeft:"-10rem"}}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</p></div> 
+                <div className="check" style={{width:"10rem"}}><button className='profile-btn' onClick={() => {
+                //    const inv_name = item.name;
+                //    const inv_email = item.email;
+                setload(true)
+                   setname(item.name.charAt(0).toUpperCase() + item.name.slice(1));
+                setemail(item.email)
+                setage(item.age)
+                setexp(item.experience)
+                settot_comp(item.no_of_companies_funded)
+                settot_money(item.total_money_funded)
+                }}>Profile</button></div> 
+                <div className="check" style={{width:"10rem"}}><button className='bid-btn' onClick={() => {
+                   const inv_email = item.email;
+                    alert(inv_email)
+                }}>Connect</button></div> 
 
-
-                    <button className='view-more' onClick={() => {
-                        
-                        const check2 = {
-                            name: tname,
-                          }
-                        axios.post("https://fundflow.onrender.com/bid/get_leaderboard" , check2, config)
-                        .then((res) => {
-                            
-                            console.log(res)
-                        })
-                    }}>Get Leaderboard</button>
-
+                
                 </div>
-                <div className="lower-dashboard-down">
-
+                <hr style={{marginTop:"-0.8rem"}} className="hor-line" />
                 </div>
+                )
+            })}        
+                      </div>
+                </div>
+
+
+              {(load) ? (<div className='profile-inv-pop'>
+              <div style={{display:"flex",marginTop:"-2rem"}}>
+                    
+            <div style={{width:"100rem"}}><h1 style={{fontSize:"3.3rem",textAlign:"center"}}>{name} </h1></div>
+            <div onClick={() => {
+                setload(false)
+            }} style={{cursor:"pointer",position:"absolute",left:"52rem",top:"0.1rem"}} ><h2>&#10060;</h2></div>
+            </div>
+
+            <div className="check-up1" style={{display:"flex",justifyContent:"space-around",marginTop:"-1rem"}}>
+            <div className="check3-p1" style={{textAlign:"center"}}>
+                <h2 style={{fontSize:"1.8rem"}}>{age}</h2>
+                <p style={{marginTop:"-0.8rem",fontSize:"1.2rem"}}>Age</p>
+            </div>
+            <div className="check3-p2" style={{textAlign:"center"}}>
+                <h2 style={{fontSize:"1.8rem"}}>{exp}</h2>
+                <p style={{marginTop:"-0.8rem",fontSize:"1.2rem"}}>Experience</p>
+            </div>
+            
+            </div>
+
+            <div className="check-up1" style={{display:"flex",justifyContent:"space-around"}}>
+            <div className="check3-p1" style={{textAlign:"center"}}>
+                <h2 style={{fontSize:"1.8rem"}}>{tot_comp}</h2>
+                <p style={{marginTop:"-0.8rem",fontSize:"1.2rem"}}>Companies funded</p>
+            </div>
+            <div className="check3-p2" style={{textAlign:"center"}}>
+                <h2 style={{fontSize:"1.8rem"}}>{tot_money}</h2>
+                <p style={{marginTop:"-0.8rem",fontSize:"1.2rem"}}>Total money funded</p>
+            </div>
+            
+            </div>
+                
+                </div>) : (<></>)}
+
+
             </div>
         </div>
         

@@ -26,10 +26,12 @@ const initialValues = {
     ask_money:"",
     give_equity:"",
   };
+  
 
 const ProfileStartUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const length = location.state.passlength
     const {values,errors,handleBlur,handleChange,handleSubmit} = useFormik({
         initialValues: initialValues,
         onSubmit: (values,action) => {
@@ -82,16 +84,27 @@ const ProfileStartUp = () => {
     <div className="sidebar-dashboard" style={{height:"50rem"}}>
         <p style={{fontSize:"3rem",textAlign:"center",color:"white",letterSpacing:"0.5rem"}}>FundFlow</p>
         <hr />
-    <div className="sidebar-dashboard-list">
-                    <div className="each-sidebar-list"><p onClick={() => {
-                        navigate("/DashboardStartUp")
-                    }}>DASHBOARD</p></div>
-                    <div className="each-sidebar-list"><p onClick={() => {
-                        navigate("/ProfileStartUp")
-                    }}>PROFILE</p></div>
-                    <div className="each-sidebar-list"><p>INVESTORS</p></div>
-                    <div className="each-sidebar-list"><p>NOTIFICATIONS</p></div>
-                </div>
+        <div className="sidebar-dashboard-list">
+                        <div className="each-sidebar-list"><p onClick={() => {
+                            navigate("/DashboardStartUp")
+                        }}>DASHBOARD</p></div>
+                        <div className="each-sidebar-list"><p onClick={() => {
+                            (length === 1)? (navigate("/ProfileStartUpShow")) : (navigate("/ProfileStartUp"))                        
+                        }}>PROFILE</p></div>
+                        <div className="each-sidebar-list"><p>INVESTORS</p></div>
+                        <div className="each-sidebar-list"><p onClick={(() => {
+                            if(length === 1)
+                            navigate("/Auction" , {state:{passlength:length}})
+                            else
+                            alert("Fill the Profile first for Starting an AUCTION")
+                        })}>AUCTION</p></div>
+                        <div className="each-sidebar-list"><p onClick={(() => {
+                           localStorage.clear()
+                           navigate("/LoginStartUp")
+                        })}>Log Out</p></div>
+                          
+                    </div>
+        
     </div>
     <div className="main-dashboard" style={{height:"50rem"}}>
         

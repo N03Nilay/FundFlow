@@ -119,3 +119,22 @@
   background: #e7e5e5;
   border-radius: 8px;
   }
+  .make-change-input:focus{
+    outline: none;
+    transition: 0.25s ease-in-out;
+    border-bottom: 2px solid black;
+    border-radius: 8px;
+  }
+  .rank-pos{
+    border: 2px solid black;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  .make-change-input::placeholder {
+    color: rgb(0, 0, 0);
+    opacity: 1;
+  }

@@ -43,7 +43,7 @@ const ProfileStartupShow = () => {
             console.log(err)
         })
 
-    })
+    },[])
     const navigate = useNavigate();
     const location = useLocation();
   return (
@@ -56,7 +56,7 @@ const ProfileStartupShow = () => {
                         navigate("/DashboardStartUp")
                     }}>DASHBOARD</p></div>
                     <div className="each-sidebar-list"><p onClick={() => {
-                        navigate("/ProfileStartUp")
+                        navigate("/ProfileStartUpShow")
                     }}>PROFILE</p></div>
                     <div className="each-sidebar-list"><p>INVESTORS</p></div>
                     <div className="each-sidebar-list"><p>NOTIFICATIONS</p></div>
@@ -86,7 +86,7 @@ const ProfileStartupShow = () => {
         </div>
         <div className='founder-heading'>
         <label htmlFor="founder" style={{fontSize: "2rem"}}>Founder : </label>
-        <span ame='founder' id='show_founder' style={{fontSize: "1.8rem",marginLeft: "14.3rem"}}
+        <span name='founder' id='show_founder' style={{fontSize: "1.8rem",marginLeft: "14.3rem"}}
         >{founder}</span><br />
         </div>
         

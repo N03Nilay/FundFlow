@@ -17,6 +17,8 @@ const initialValues = {
   };
 
 const Biddingpage = () => {
+    var val = ""
+    const [showeval, setshoweval] = useState(false)
     const location = useLocation();
     const {values,errors,handleBlur,handleChange,handleSubmit} = useFormik({
         initialValues: initialValues,
@@ -42,7 +44,7 @@ const Biddingpage = () => {
         }
         else if(percent==='')
         {
-            alert('Please enter Password');
+            alert('Please enter Equity');
         }
     else if(percent < 0){
       alert("Invalid Percent")
@@ -50,7 +52,7 @@ const Biddingpage = () => {
     else{
       
 
-        const val = (100/percent) * price;
+          val = (100/percent) * price;
         const cname = location.state.name;
         const pass_value = {
           name: cname,
@@ -95,8 +97,13 @@ const Biddingpage = () => {
         </div>
         </div>
         
-        <button type='submit' className="bid-start-btn">Bid Now</button>
+        <button type='submit' className="bid-start-btn" onClick={() => {
+          // setshoweval
+        }}>Bid Now</button>
         </form>
+        {/* <div className="showEvaluation">
+          <p>You are giving Evaluation of <br /> <b> Rs {val}</b></p>
+        </div> */}
         </div>
 
         </div>

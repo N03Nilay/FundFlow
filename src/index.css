@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #c2c9d2;
+}
+
                               /* SignUp and LogIn */
 
 .getting-started-body{
@@ -92,12 +100,12 @@ code {
 .sidebar-dashboard{
   background-color: #0081C9;
   width: 20rem;
-  height: 39.05rem;
+ 
 }
 .main-dashboard{
   background-color: #86E5FF;
   width: 65.5rem;
-  height: 39.05rem;
+  height: 45rem;
 }
 .upper-dashboard{
   height: 8rem;
@@ -109,27 +117,57 @@ code {
 }
 .lower-dashboard{
   margin-left: 1rem;
+  position: relative;
+  margin-top: -1.5rem;
 }
 .lower-dashboard-down{
-  height: 25rem;
-  width: 30rem;
+  width: 60rem;
   background: white;
   border-radius: 20px;
-  margin-left: 1rem;
+  margin-left: 1.5rem;
   margin-top: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .each-investor{
-  margin-left: 5rem;
-  margin-top: -2.2rem;
+  /* margin-left: 5rem;*/
+  margin-top: 1.5rem; 
+  margin-left: -26rem;
   font-size: 1.5rem;
+
 }
 .investors-list{
-  margin-top: -1rem;
-  height: 19rem;
+  margin-top: 0.8rem;
+  height: 25rem;
+  overflow-y: scroll;
+}
+
+.hor-line{
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 54px 55px, rgba(0, 0, 0, 0.3) 0px -12px 30px, rgba(0, 0, 0, 0.3) 0px 4px 6px, rgba(0, 0, 0, 0.3) 0px 12px 13px, rgba(0, 0, 0, 0.3) 0px -3px 5px;
+}
+.profile-btn{
+  background: rgb(131, 231, 248);
+  border: none;
+  border-radius: 5px;
+  height: 2.3rem;
+  width: 6rem;
+  font-size: 1.2rem;
+  margin-left: 20rem;
+  margin-top: 1.5rem;
+}
+.profile-btn:hover{
+  cursor:pointer;
+  color: white;
+  background: rgb(25, 218, 252);
 }
 .check{
   margin-top: -1rem;
   margin-left: 1rem;
+}
+.arrow-inv{
+  font-size: 2rem;
+  margin-top: -1.8rem;
+  transform: rotate(90deg);
+  margin-left: 2rem;
 }
 .view-more{
   font-size: 1.2rem;
@@ -163,65 +201,24 @@ code {
   color: rgb(161, 167, 182);
   text-decoration: overline;
 }
-#bhakk:hover{
-  text-decoration: underline;
-}
-.list-of-startup{
-  display: flex;
-  flex-wrap: wrap;
-}
-.each-startup{
-  height: 13rem;
-  width: 15rem;
-  border-radius: 20px;
-  background: #0081B4;
-  color: white;
-  margin-left: 5rem;
-  margin-top: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-.view-more-each-startup{
-  font-size: 1.2rem;
-  margin-left: 3rem;
-  background: white;
-  border: none;
-  border-radius: 5px;
-  height: 1.9rem;
-  width: 8rem;
-}
-.view-more-each-startup:hover{
-  cursor: pointer;
-  background: #39B5E0;
-  color: white;
-}
-.check3{
-  position: absolute;
-  top: 5rem;
-  left: 8rem;
-  border: 2px solid black;
-  height: 30rem;
-  width: 70rem;
-  background: #94b5f7fd;
-  border: none;
-  border-radius: 20px;
-}
-
 .bid-btn{
   font-size: 1.2rem;
-  margin-right: 5rem;
-  background: rgb(212, 112, 112);
+  /* margin-right: 5rem; */
+  background: rgb(131, 248, 141);
   border: none;
   border-radius: 5px;
   height: 2.3rem;
   width: 6rem;
+  /* position: absolute;
+  left: 52rem; */
+  margin-left: -10rem;
+  margin-top: 1.5rem;
 }
-
 .bid-btn:hover{
   cursor:pointer;
   color: white;
-  background: rgb(241, 81, 81);
+  background: rgb(64, 243, 28);
 }
-
 .bid-left{
   background-color: #3C84AB;
   height:34.55rem;
@@ -276,5 +273,24 @@ code {
   background: rgb(30, 209, 30);
   color: white;
 } 
+/* .showEvaluation{
+  font-size: 2.0rem;
+  text-align: center;
+  margin-top: 5rem;
+  border: 2px dashed rgb(120, 235, 43);
+  width: 30rem;
+  margin-left: 10rem;
+} */
 
-
+/* profile-inv */
+.profile-inv-pop{
+position: absolute;
+    top: 5rem;
+   left: 4rem;
+    height: 22rem;
+    width: 55rem;
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    
+    border: none;
+    border-radius: 20px;
+}
