@@ -77,7 +77,7 @@ else{
       axios.post("https://fundflow.onrender.com/user/register", signup , config)
       .then((res) => {
         if(res.status === 200)
-        alert("user Created")
+        navigate("/LoginStartUp")
         else
         console.log("error")
       }).catch((err) => {
@@ -94,7 +94,7 @@ else{
     <div>
         <div className="createDoctor">
             <p style={{fontSize:"250%",letterSpacing:"0.5px",fontWeight:"bold",marginTop:"-0.01rem",paddingTop:"0.5rem"}}>FundFlow : For Start Up's</p>
-            <p style={{fontSize:"130%",marginTop:"-1.5rem",fontWeight:"bold"}}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, sunt? </p>
+            <p style={{fontSize:"130%",marginTop:"-1.5rem",fontWeight:"bold",letterSpacing:"0.1rem"}}> Find your First Investor and Grow your business </p>
             <div className="allp" style={{display:"flex",marginLeft:"12rem"}}>
 
             <div className="p1">

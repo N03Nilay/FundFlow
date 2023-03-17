@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import {useFormik} from "formik";
 import './ProfileStartup.css';
+import { Dna } from 'react-loader-spinner';
 
 
 const accessToken = localStorage.getItem("access token");
@@ -25,6 +26,7 @@ const ProfileInvestor = () => {
   
     const navigate = useNavigate();
     const location = useLocation();
+    const [loading,setLoading] = useState(false)
     const [invname,setinvname] = useState("")
     const [age,setage] = useState("")
     const [experience,setexperience] = useState("")
@@ -38,6 +40,7 @@ const ProfileInvestor = () => {
       axios.get("https://fundflow.onrender.com/investor/get_detail" , config)
       .then((res) => {
           console.log(res)
+          setLoading(true)
           setinvname(res.data[0].name)
           setage(res.data[0].age)
             setexperience(res.data[0].experience)
@@ -74,13 +77,12 @@ const ProfileInvestor = () => {
       .then((res) => {
         if(res.status === 200)
         {
-        alert("Data Passed");
-        // navigate("/DashboardInvestor")
+        // alert("Data Passed");
+        navigate("/ProfileShowInvestor")
         }
-        else
-        alert("check");
+        
       }).catch((err) => {
-          alert("Please enter all the fields")
+          alert("Please enter all the fields correctly")
       })
 
       // action.resetForm();
@@ -116,7 +118,7 @@ const ProfileInvestor = () => {
     <h1 style={{textAlign:"center",fontSize:"3rem",width:"30rem",marginLeft:"18rem",padding:"0.2rem",textShadow: "2px 2px #0077b6"}}>SET PROFILE</h1>
     </div>
         
-    <form className='form-profile' onSubmit={handleSubmit}>
+    {(loading)?(<form className='form-profile' onSubmit={handleSubmit}>
     <div className='inv_name-heading-change'>
             <label style={{fontSize: "2rem"}} htmlFor="inv_name">Name : </label>
         <input className='make-change-input' type="text" style={{color:"grey",marginLeft:"13.7rem"}}  name='inv_name' id='inv_name' placeholder='Password' autoComplete='off'
@@ -167,7 +169,17 @@ const ProfileInvestor = () => {
         <button type='submit' className="create-btn" style={{marginLeft:"12rem",marginTop:"2rem"}}>Create</button>
         </div>
         </div>
-      </form>
+      </form>) : (<>
+        <div className="loader">
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+      </>)}
     </div>
     
 </div>

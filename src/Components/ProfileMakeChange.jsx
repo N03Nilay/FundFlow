@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import './ProfileStartup.css';
+import { Dna } from 'react-loader-spinner';
 
 const accessToken = localStorage.getItem("access token");
 console.log(accessToken)
@@ -11,7 +12,8 @@ const config = {
     }
 }
 
-const ProfileMakeChange = (e) => {
+const ProfileMakeChange = () => {
+    const [loading,setLoading] = useState(false)
     const [name,setname] = useState("")
     const [founder,setfounder] = useState("")
     const [cofounder,setcofounder] = useState("")
@@ -33,6 +35,7 @@ const ProfileMakeChange = (e) => {
         axios.get("https://fundflow.onrender.com/startup/get_details" , config)
         .then((res) => {
             console.log(res)
+            setLoading(true)
             setname(res.data[0].name)
             setfounder(res.data[0].founder)
             setcofounder(res.data[0].co_founder)
@@ -64,10 +67,18 @@ const ProfileMakeChange = (e) => {
                         navigate("/DashboardStartUp")
                     }}>DASHBOARD</p></div>
                     <div className="each-sidebar-list"><p onClick={() => {
-                        navigate("/ProfileStartUp")
+                        navigate("/ProfileStartUpShow")
                     }}>PROFILE</p></div>
                     <div className="each-sidebar-list"><p>INVESTORS</p></div>
-                    <div className="each-sidebar-list"><p>NOTIFICATIONS</p></div>
+                    <div className="each-sidebar-list"><p onClick={(() => {
+                            
+                            alert("Fill the Profile first for Starting an AUCTION")
+                           
+                        })}>AUCTION</p></div>
+                        <div className="each-sidebar-list"><p onClick={(() => {
+                           localStorage.clear()
+                           navigate("/LoginStartUp")
+                        })}>Log Out</p></div>
                 </div>
     </div>
     <div className="main-dashboard" style={{height:"50rem"}}>
@@ -106,7 +117,7 @@ const ProfileMakeChange = (e) => {
     </div>
 
         
-    <form className='form-profile' style={{marginTop:"-1rem",marginLeft:"10rem"}}>
+    {(loading)?(<form className='form-profile' style={{marginTop:"-1rem",marginLeft:"10rem"}}>
     <div className='name-heading'>
         <label htmlFor="name" style={{fontSize: "2rem"}}>Name : </label>
         <span name='name' id='show_name'style={{fontSize: "1.8rem",marginLeft: "16.3rem"}}
@@ -173,7 +184,17 @@ const ProfileMakeChange = (e) => {
             setnewgive_equity(e.target.value) 
         }} /></span><br />
         </div>
-      </form>
+      </form>) : (<>
+        <div className="loader">
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+      </>)}
     </div>
     
 </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './ListOfStartup.css'
 import { useNavigate } from 'react-router-dom';
+import { Dna } from 'react-loader-spinner';
 
 const accessToken = localStorage.getItem("access token");
 console.log(accessToken)
@@ -14,6 +15,7 @@ const config = {
 
 const ListOfStartups = () => {
     const navigate = useNavigate()
+    const [loading,setLoading] = useState(false)
     const [dataOfEachStartUp,setdataOfEachStartUp] = useState([])
     const [load,setload] = useState(false)
     const [est_year,setest_year] = useState(0)
@@ -34,6 +36,7 @@ const ListOfStartups = () => {
         // console.log(res.data)
         console.log("accessToken")
         setdataOfEachStartUp(res.data)
+        setLoading(true)
         console.log(res.data)
     }).catch((err) => {
         console.log(accessToken)
@@ -48,7 +51,7 @@ const ListOfStartups = () => {
 },[])
 
   return (
-    <div style={{display:"flex"}}>
+    <div style={{display:"flex",height:"39.1rem"}}>
       <div className="sidebar-dashboard">
               <p style={{fontSize:"3rem",textAlign:"center",color:"white",letterSpacing:"0.5rem"}}>FundFlow</p>
               <hr />
@@ -74,14 +77,15 @@ const ListOfStartups = () => {
                       </div>
           
           </div>
-        <div style={{position:"relative" ,backgroundImage: "linear-gradient(to right, #74ebd5 0%, #9face6 100%)",paddingBottom:"3rem"}}>
+        <div style={{position:"relative" ,backgroundImage: "linear-gradient(to right, #74ebd5 0%, #9face6 100%)",paddingBottom:"1rem",paddingRight:"2.5rem"}}>
         <div className="check2">
         <p style={{textAlign:"center",fontSize:"2.5rem"}}>Bid on best of The Start Up Ideas</p>
         </div>
-        <div className="list-of-startup">
+        {(loading)?(<div className="list-of-startup" style={{width:"65rem",height:"32rem",boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",overflow:"scroll",marginLeft:"0.5rem",borderRadius:"8px"}}>
             {dataOfEachStartUp.map((item,index) => {
+                if(item.video_link != undefined){
                 return(
-                <div className="each-startup" key={item._id}>
+                <div className="each-startup" key={item._id} style={{paddingBottom:"1rem"}}>
                 <p style={{fontSize:"1.5rem",textAlign:"center"}}>{item.name}</p>
                 <hr style={{marginTop:"-0.5rem"}} />
                 <p style={{marginTop:"-0.05rem",fontSize:"1.2rem",textAlign:"center"}}>Sector : {item.type_of_company}</p>
@@ -100,7 +104,7 @@ const ListOfStartups = () => {
                     setemail(item.email)
                 }}>View More</button>
             </div>
-                )
+                )}
             })}
             { (load) ?  (<div className="check3">
                 <div style={{display:"flex"}}>
@@ -147,7 +151,17 @@ const ListOfStartups = () => {
              </div>
              ) : (<></>)}
             
-        </div>
+        </div>) : (<>
+            <div className="loader">
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+        </>)}
         </div>
        
     </div>

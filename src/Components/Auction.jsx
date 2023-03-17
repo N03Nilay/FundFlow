@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import './ProfileStartup.css';
+import { Dna } from 'react-loader-spinner';
+
 const accessToken = localStorage.getItem("access token");
 console.log(accessToken)
 const config = {
@@ -11,16 +13,20 @@ const config = {
 }
 
 const Auction = () => {
+
     const location = useLocation();
+    const [loading,setLoading] = useState(false)
     const [num,setnum] = useState(0);
     const [lead_check,setlead_check] = useState(0);
     const [name,setname] = useState("")
     const [ask_money,setask_money] = useState("")
     const [give_equity,setgive_equity] = useState("")
-    const passlength = location.state.passlength;
+    // const passlength = location.state.passlength;
+    
     useEffect(() => {
         axios.get("https://fundflow.onrender.com/startup/get_details" , config)
         .then((res) => {
+            setLoading(true)
             setname(res.data[0].name)
             setask_money(res.data[0].ask_money)
             setgive_equity(res.data[0].give_equity)
@@ -61,15 +67,45 @@ const Auction = () => {
     </div>
         <div style={{display:"flex",justifyContent:"space-around"}}>
             <div>
-                    <p style={{textAlign:"center",fontSize:"1.6rem"}}><b>Rs {ask_money}</b></p>
+                   {(loading) ?(<p style={{textAlign:"center",fontSize:"1.6rem"}}><b>Rs {ask_money}</b></p>) : (<>
+                <div className="loader" style={{marginTop:"0rem"}}>
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+                   </>)}
                     <p style={{fontSize:"1.6rem",letterSpacing:"0.1rem",marginTop:"-1.5rem"}}>Asking Money</p>
             </div>
             <div>
-            <p style={{textAlign:"center",fontSize:"1.6rem"}}><b>{give_equity}% </b></p>
+            {(loading) ?(<p style={{textAlign:"center",fontSize:"1.6rem"}}><b>{give_equity}%</b></p>) : (<>
+                <div className="loader" style={{marginTop:"0rem"}}>
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+                   </>)}
                     <p style={{fontSize:"1.6rem",letterSpacing:"0.1rem",marginTop:"-1.5rem"}}>Giving Equity</p>
             </div>
             <div>
-            <p style={{textAlign:"center",fontSize:"1.6rem"}}><b>Rs {((100/give_equity * ask_money)).toFixed(0)} </b></p>
+            {(loading) ?(<p style={{textAlign:"center",fontSize:"1.6rem"}}><b>Rs {((100/give_equity * ask_money)).toFixed(0)}</b></p>) : (<>
+                <div className="loader" style={{marginTop:"0rem"}}>
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+                   </>)}
                     <p style={{fontSize:"1.6rem",letterSpacing:"0.1rem",marginTop:"-1.5rem"}}>Current Evaluation</p>
             </div>
         </div>

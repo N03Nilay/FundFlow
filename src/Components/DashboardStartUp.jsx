@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { display } from '@mui/system';
+import { Dna } from 'react-loader-spinner';
     
 const accessToken = localStorage.getItem("access token");
 console.log(accessToken)
@@ -16,6 +17,8 @@ var config = {
 const DashboardStartUp = () => {
     const [dataOfEachInvestor,setdataOfEachInvestor] = useState([])
     const [length,setlength] = useState(0);
+    const [loading,setLoading] = useState(false)
+    const [locCheck,setlocCheck] = useState("")
     var tname = "";
     const [eachstartup , seteachstartup] = useState([])
     const navigate = useNavigate();
@@ -24,12 +27,19 @@ const DashboardStartUp = () => {
         axios.get("https://fundflow.onrender.com/startup/get_details" , config)
         .then((res) => {
             console.log(accessToken);
+            setLoading(true);
             console.log(res)
-            setlength(res.data.length)
-            if(length === 1){
-            tname = res.data[0].name
-            console.log(tname)
-        }
+        //     tname = res.data[0].name
+            
+        //     setlength(res.data.length)
+        // //     if(length === 1){
+        // //     tname = res.data[0].name
+        // //     console.log(tname)
+        // // }
+        // console.log(length)
+        //     console.log(tname)
+         setlocCheck(res.data[0].est_year)
+        
 
         })
         .catch((err) => {
@@ -38,7 +48,8 @@ const DashboardStartUp = () => {
         axios.get("https://fundflow.onrender.com/investor/get" , config)
                             .then((res) => {
                                 setdataOfEachInvestor(res.data)
-                                
+                                // console.log(res.data[1].experience)
+                                setLoading(true);
                                 // console.log(res)
                             })
                             .catch((err) => {
@@ -55,23 +66,11 @@ const DashboardStartUp = () => {
     const [exp,setexp] = useState("")
     const [tot_comp,settot_comp] = useState("")
     const [tot_money,settot_money] = useState("")
+    console.log(locCheck)
     
-    const StartAuction = () => {
-        if(num === 0){
-        setnum(num+1)
-        const check = {
-            name: tname,
-          }
-        axios.post("https://fundflow.onrender.com/startup/start_auction" , check, config)
-        .then((res) => {
-            alert("auction started")  
-        })}
-        else
-        alert("Alredy started")
-        
-    }
   return (
-    <div style={{display:"flex"}}>
+    <>
+  <div style={{display:"flex"}}>
         <div className="sidebar-dashboard">
             <p style={{fontSize:"3rem",textAlign:"center",color:"white",letterSpacing:"0.5rem"}}>FundFlow</p>
             <hr />
@@ -80,11 +79,11 @@ const DashboardStartUp = () => {
                             navigate("/DashboardStartUp")
                         }}>DASHBOARD</p></div>
                         <div className="each-sidebar-list"><p onClick={() => {
-                            (length === 1)? (navigate("/ProfileStartUpShow",{state:{passlength:length}})) : (navigate("/ProfileStartUp",{state:{passlength:length}}))                        
+                            (locCheck === undefined)? (navigate("/ProfileStartUp",{state:{passlength:length}})) : (navigate("/ProfileStartUpShow",{state:{passlength:length}}))                        
                         }}>PROFILE</p></div>
                         <div className="each-sidebar-list"><p>INVESTORS</p></div>
                         <div className="each-sidebar-list"><p onClick={(() => {
-                            if(tname === "")
+                            if(locCheck === undefined)
                             alert("Fill the Profile first for Starting an AUCTION")
                             else
                             navigate("/Auction" , {state:{passlength:length}})
@@ -121,12 +120,12 @@ const DashboardStartUp = () => {
             </div>
             <div className="lower-dashboard" >
             <h1 style={{textAlign:"center",fontSize:"3rem",width:"30rem",marginLeft:"15rem",padding:"0.2rem",textShadow: "2px 2px #0077b6"}}>Current Investors</h1>
-                <div className="lower-dashboard-down" style={{marginTop:"-1.8rem"}}>
+                {(loading)?(<div className="lower-dashboard-down" style={{marginTop:"-1.8rem"}}>
                     {/* <p style={{fontSize:"1.4rem",textAlign:"center",marginTop:"-0.01rem",paddingTop:"0.5rem"}}>Current Investors</p>
                     <hr style={{marginTop:"-1rem" }} /> */}
                     <div className="investors-list">
                           {dataOfEachInvestor.map((item,index) => {
-                            if(index != 0)
+                            if(index != 0 && item.experience != undefined)
                     return(
                         <div key={item._id}>
                         <div style={{display:"flex",justifyContent:"space-between"}}>
@@ -157,7 +156,17 @@ const DashboardStartUp = () => {
                 )
             })}        
                       </div>
-                </div>
+                </div>) : (<>
+                <div className="loader">
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+                </>)}
 
 
               {(load) ? (<div className='profile-inv-pop'>
@@ -200,6 +209,7 @@ const DashboardStartUp = () => {
         </div>
         
     </div>
+    </>
   )
 }
 

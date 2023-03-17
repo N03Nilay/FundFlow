@@ -13,7 +13,10 @@ const MainPage = () => {
             <div className="left-div1">
             
             <h1 style={{fontSize:"3rem"}}>A new Venture to Ideas</h1>
-            <p style={{fontSize:"1.5rem"}}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, ipsa. Doloribus, eos eligendi minima nesciunt vero iste. Quas aspernatur veniam aperiam laudantium reprehenderit fuga ad.</p>
+            <p style={{fontSize:"1.5rem"}}>First streamlined and standardized platform for
+evaluating and investing in new business ventures,
+helping both investors and pitchers to find the best
+opportunities for their needs</p>
 
 <button id="foot"><button class="button-os" onClick={()=>{
   navigate('/SignupAndLogIn')

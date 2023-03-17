@@ -67,12 +67,11 @@ const ProfileStartUp = () => {
         if(res.status === 200)
         {
         alert("Data Passed");
-        // navigate("/DashboardInvestor")
+        navigate("/ProfileStartupShow")
         }
-        else
-        alert("check");
+        
       }).catch((err) => {
-          alert(err)
+          alert("Please fill all the fields correctly")
       })
 
       // action.resetForm();
@@ -81,7 +80,7 @@ const ProfileStartUp = () => {
       });
   return (
     <div><div style={{display:"flex"}}>
-    <div className="sidebar-dashboard" style={{height:"50rem"}}>
+    <div className="sidebar-dashboard" style={{height:"60rem"}}>
         <p style={{fontSize:"3rem",textAlign:"center",color:"white",letterSpacing:"0.5rem"}}>FundFlow</p>
         <hr />
         <div className="sidebar-dashboard-list">
@@ -93,9 +92,7 @@ const ProfileStartUp = () => {
                         }}>PROFILE</p></div>
                         <div className="each-sidebar-list"><p>INVESTORS</p></div>
                         <div className="each-sidebar-list"><p onClick={(() => {
-                            if(length === 1)
-                            navigate("/Auction" , {state:{passlength:length}})
-                            else
+                            
                             alert("Fill the Profile first for Starting an AUCTION")
                         })}>AUCTION</p></div>
                         <div className="each-sidebar-list"><p onClick={(() => {
@@ -106,19 +103,20 @@ const ProfileStartUp = () => {
                     </div>
         
     </div>
-    <div className="main-dashboard" style={{height:"50rem"}}>
+    <div className="main-dashboard" style={{height:"60rem"}}>
+    <h1 style={{textAlign:"center",fontSize:"3rem",width:"10rem",marginLeft:"23rem",padding:"0.2rem",textShadow: "2px 2px #0077b6"}}>PROFILE</h1>
         
     <form className='form-profile' onSubmit={handleSubmit}>
     <div className='name-heading'>
             <label htmlFor="name">Name : </label>
-        <input type="text"  name='name' id='name' placeholder='Password' autoComplete='off'
+        <input type="text"  name='name' id='name' placeholder='StartUp Name' autoComplete='off'
         value={values.name}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='founder-heading'>
         <label htmlFor="founder">Founder : </label>
-        <input type="text" name='founder' id='founder' placeholder='E-mail id' autoComplete='off'
+        <input type="text" name='founder' id='founder' placeholder="Founder's Name" autoComplete='off'
         value={values.founder}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
@@ -126,63 +124,63 @@ const ProfileStartUp = () => {
         
         <div className='cofounder-heading'>
             <label htmlFor="co_founder">Co-Founder : </label>
-        <input type="text"  name='co_founder' id='co_founder' placeholder='Password' autoComplete='off'
+        <input type="text"  name='co_founder' id='co_founder' placeholder="Co-Founder's Name" autoComplete='off'
         value={values.co_founder}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='type-heading'>
             <label htmlFor="type">Type of Business :  </label>
-        <input type="text"  name='type' id='type' placeholder='Password' autoComplete='off'
+        <input type="text"  name='type' id='type' placeholder="Type of Organisation" autoComplete='off'
         value={values.type}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='est_year-heading'>
             <label htmlFor="est_year">Established Year : </label>
-        <input type="text"  name='est_year' id='est_year' placeholder='Password' autoComplete='off'
+        <input type="text"  name='est_year' id='est_year' placeholder="Established Year" autoComplete='off'
         value={values.est_year}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='location-heading'>
             <label htmlFor="location"> Location : </label>
-        <input type="text"  name='location' id='location' placeholder='Password' autoComplete='off'
+        <input type="text"  name='location' id='location' placeholder="Main office" autoComplete='off'
         value={values.location}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='prev_eval-heading'>
             <label htmlFor="prev_eval">Previous Evaluation : </label>
-        <input type="text"  name='prev_eval' id='prev_eval' placeholder='Password' autoComplete='off'
+        <input type="text"  name='prev_eval' id='prev_eval' placeholder="Previous Evaluatation (Rs)" autoComplete='off'
         value={values.prev_eval}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='rev_last_yr-heading'>
             <label htmlFor="rev_last_yr">Revenue Last Year : </label>
-        <input type="text"  name='rev_last_yr' id='rev_last_yr' placeholder='Password' autoComplete='off'
+        <input type="text"  name='rev_last_yr' id='rev_last_yr' placeholder="Revenue of Last Year (Rs)" autoComplete='off'
         value={values.rev_last_yr}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='pitch-heading'>
             <label htmlFor="pitch">Pitch Video link : </label>
-        <input type="text"  name='pitch' id='pitch' placeholder='Password' autoComplete='off'
+        <input type="text"  name='pitch' id='pitch' placeholder="Video link of your Pitch" autoComplete='off'
         value={values.pitch}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='ask_money-heading'>
             <label htmlFor="ask_money">Ask Money : </label>
-        <input type="text"  name='ask_money' id='ask_money' placeholder='Password' autoComplete='off'
+        <input type="text"  name='ask_money' id='ask_money' placeholder="Raise Money from Investors (Rs)" autoComplete='off'
         value={values.ask_money}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
         </div>
         <div className='give_equity-heading'>
             <label htmlFor="give_equity">Give Equity : </label>
-        <input type="text"  name='give_equity' id='give_equity' placeholder='Password' autoComplete='off'
+        <input type="text"  name='give_equity' id='give_equity' placeholder="Equity you want to offer (%)" autoComplete='off'
         value={values.give_equity}
         onChange={handleChange}
         onBlur={handleBlur}/><br />
@@ -190,7 +188,7 @@ const ProfileStartUp = () => {
         
         <div style={{display:"flex"}}>
           <div>
-        <button type='submit' className="create-btn">Create</button>
+        <button type='submit' className="create-btn" style={{marginLeft:"10rem",marginTop:"2rem"}}>Create</button>
         </div>
         </div>
       </form>

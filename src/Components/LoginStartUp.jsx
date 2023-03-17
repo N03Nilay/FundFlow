@@ -82,7 +82,7 @@ const LoginStartUp = () => {
          <div className="createDoctor">
             <p style={{fontSize:"250%",letterSpacing:"0.5px",fontWeight:"bold",marginTop:"-0.01rem",paddingTop:"0.5rem"}}>FundFlow : For Start Up's</p>
             
-            <p style={{fontSize:"130%",marginTop:"-1.5rem",fontWeight:"bold"}}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, provident.</p>
+            <p style={{fontSize:"130%",marginTop:"-1.5rem",fontWeight:"bold",letterSpacing:"0.1rem"}}> Find your First Investor and Grow your business</p>
             <div className="allp" style={{display:"flex",marginLeft:"12rem"}}>
             <div className="p1">
             <img src="2654608-removebg-preview.png" style={{marginTop:"1.4rem"}} alt="" height="300rem" width="350rem" />

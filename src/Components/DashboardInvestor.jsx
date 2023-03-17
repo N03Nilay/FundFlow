@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './ListOfStartup.css'
+import { Dna } from 'react-loader-spinner'
 
 const accessToken = localStorage.getItem("access token");
 console.log(accessToken)
@@ -12,6 +13,7 @@ const config = {
 }
 
 const DashboardInvestor = () => {
+    const [loading,setLoading] = useState(false)
     const [dataOfEachStartUp,setdataOfEachStartUp] = useState([])
     const [showCheck,setshowCheck] = useState(0)
     const [load,setload] = useState(false)
@@ -29,11 +31,13 @@ const DashboardInvestor = () => {
         axios.get("https://fundflow.onrender.com/startup/get" , config)
         .then((res) => {
             // console.log(res.data)
+            setLoading(true)
             setdataOfEachStartUp(res.data)
     })
     axios.get("https://fundflow.onrender.com/investor/get_detail" , config)
     .then((res) => {
         console.log(res)
+        setLoading(true)
         console.log(res.data[0].experience)
         setshowCheck(res.data[0].experience)
 
@@ -92,10 +96,11 @@ const DashboardInvestor = () => {
               </div>
               <div className="lower-dashboard">
               <h1 style={{textAlign:"center",fontSize:"3rem",width:"30rem",marginLeft:"15rem",padding:"0.2rem",textShadow: "2px 2px #0077b6"}}>Current Start Ups</h1>
-                  <div className="lower-dashboard-down" style={{marginTop:"-1.8rem"}}>
+                  {(loading)?(<div className="lower-dashboard-down" style={{marginTop:"-1.8rem"}}>
                     
                       <div className="investors-list" style={{marginTop:"0.5rem"}}>
                           {dataOfEachStartUp.map((item,index) => {
+                            if(item.video_link != undefined){
                     return(
                         <div key={item._id}>
                         <div style={{display:"flex",justifyContent:"space-between"}}>
@@ -130,7 +135,7 @@ const DashboardInvestor = () => {
                 </div>
                 <hr style={{marginTop:"-0.8rem"}} />
                 </div>
-                )
+                )}
             })}      
 
             { (load) ?  (<div className="check3" style={{position:"absolute",top:"4rem",left:"-0.5rem"}}>
@@ -183,7 +188,17 @@ const DashboardInvestor = () => {
                         navigate("/ListOfStartups")
                       }}>View more &#x290B;</button> */}
   
-                  </div>
+                  </div>) : (<>
+                    <div className="loader">
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+                  </>)}
               </div>
           </div>
           

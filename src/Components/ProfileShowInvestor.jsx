@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './ProfileInvestor.css'
+import { Dna } from 'react-loader-spinner'
 
 const accessToken = localStorage.getItem("access token");
 console.log(accessToken)
@@ -13,6 +14,7 @@ const config = {
 
 const ProfileShowInvestor = () => {
     const navigate = useNavigate()
+    const [loading,setLoading] = useState(false)
     const [invname,setinvname] = useState("")
     const [age,setage] = useState("")
     const [experience,setexperience] = useState("")
@@ -23,6 +25,7 @@ const ProfileShowInvestor = () => {
         axios.get("https://fundflow.onrender.com/investor/get_detail" , config)
         .then((res) => {
             console.log(res)
+            setLoading(true)
             setinvname(res.data[0].name)
             setage(res.data[0].age)
             setexperience(res.data[0].experience)
@@ -52,7 +55,10 @@ const ProfileShowInvestor = () => {
                           <div className="each-sidebar-list"><p onClick={() => {
                         navigate("/ListOfStartups")
                       }}>Start Ups</p></div>
-                          <div className="each-sidebar-list"><p>NOTIFICATIONS</p></div>
+                           <div className="each-sidebar-list"><p onClick={(() => {
+                           localStorage.clear()
+                           navigate("/LoginStartUp")
+                        })}>Log Out</p></div>
                           
                             
                       </div>
@@ -73,7 +79,7 @@ const ProfileShowInvestor = () => {
     </div>
     </div>
 
-    <form className='form-profile-inv' style={{marginTop:"-1rem",marginLeft:"10rem"}}>
+    {(loading)?(<form className='form-profile-inv' style={{marginTop:"-1rem",marginLeft:"10rem"}}>
     <div className='inv-name-heading'>
         <label htmlFor="inv-name" style={{fontSize: "2rem"}}>Name : </label>
         <span name='inv-name' id='show_inv-name'style={{fontSize: "1.8rem",marginLeft:"17.9rem"}}
@@ -107,7 +113,17 @@ const ProfileShowInvestor = () => {
         </div>
         
         
-      </form>
+      </form>):(<>
+        <div className="loader">
+                    <Dna
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                className="loader"/></div>
+      </>)}
               
           </div>
           

@@ -1,5 +1,6 @@
 
 .list-of-startup{
+  margin-top: -2rem;
     display: flex;
     flex-wrap: wrap;
   }
@@ -11,6 +12,7 @@
     color: white;
     margin-left: 5rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
   .view-more-each-startup{
@@ -26,6 +28,8 @@
     cursor: pointer;
     background: #39B5E0;
     color: white;
+    letter-spacing: 0.1rem;
+    transition: 0.3s;
   }
   .check3{
     position: absolute;
@@ -53,7 +57,11 @@
     text-decoration: none;
   }
   #connect-btn a:hover{
-    cursor: pointer;
-    background: #8f8c8c;
     color: white;
+  }
+  #connect-btn:hover{
+    cursor: pointer;
+    background: #a380f5;
+    color: white;
+    
   }

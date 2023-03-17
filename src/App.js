@@ -21,6 +21,7 @@ import ProfileMakeChange from './Components/ProfileMakeChange';
 import ProfileInvestor from './Components/ProfileInvestor';
 import MainPage from './Components/MainPage';
 import ProfileShowInvestor from './Components/ProfileShowInvestor';
+import Loader from './Components/Loader';
 
 function App() {
   return (
@@ -46,10 +47,12 @@ function App() {
       <Route path='/ProfileMakeChange' element={<ProfileMakeChange/>} />
       <Route path='/ProfileInvestor' element={<ProfileInvestor/>} />
       <Route path='/ProfileShowInvestor' element={<ProfileShowInvestor/>} />
+      <Route path='/Loader' element={<Loader/>} />
 
       
       </Routes>
-    </Router></>
+    </Router>
+    </>
   );
 }
 
